@@ -1,8 +1,9 @@
-import { getUser } from '../local-storage-utils.js';
+
 import { getToDos } from '../local-storage-utils.js';
 import { setToDos } from '../local-storage-utils.js';
+import { addToDo } from '../local-storage-utils.js';
 
-let userId = 1;
+let todoId = 1;
 
 const todoForm = document.querySelector('form');
 
@@ -14,16 +15,25 @@ todoForm.addEventListener('submit', (e) => {
     const toDoMessage = formData.get('to-do');
     const todosArray = getToDos();
 
-    console.log(todosArray);
+    addToDo(todosArray, toDoMessage, todoId);
 
-    todosArray.push(
-        {
-            id: userId
-        }
-    );
-    console.log(todosArray);
-        
     setToDos(todosArray);
 
-    userId++;
+    //Render todo list here
+    const listContainer = document.getElementById('todo-list');
+    listContainer.textContent = '';
+    
+
+    for (let todoObj of todosArray) {
+        const messageP = document.createElement('p');
+        const todoMessage = todoObj.todo;
+        messageP.textContent = todoMessage;
+        listContainer.append(messageP);
+        const completeButton = document.createElement('button');
+        completeButton.textContent = 'Completed';
+        listContainer.append(completeButton);
+    }
+
+
+    todoId++;
 });

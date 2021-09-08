@@ -21,3 +21,13 @@ export function setToDos(todoArray) {
     user.todos = todoArray;
     setUser(user);
 }
+
+export function addToDo(todosArray, message, todoId) {
+    todosArray.push(
+        {
+            id: todoId,
+            todo: message, 
+            completed: false,
+        }
+    );
+}
