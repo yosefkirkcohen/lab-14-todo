@@ -17,6 +17,10 @@ todoForm.addEventListener('submit', (e) => {
     
 
     addToDo(toDoMessage);
+
+    const todoInput = document.getElementById('to-do');
+    todoInput.value = '';
+
     renderList();
 });
 
