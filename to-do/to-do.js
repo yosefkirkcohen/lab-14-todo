@@ -2,6 +2,7 @@
 import { getToDos } from '../local-storage-utils.js';
 import { setToDos } from '../local-storage-utils.js';
 import { addToDo } from '../local-storage-utils.js';
+import { renderList } from './to-do-utils.js';
 
 let todoId = 1;
 
@@ -19,21 +20,7 @@ todoForm.addEventListener('submit', (e) => {
 
     setToDos(todosArray);
 
-    //Render todo list here
-    const listContainer = document.getElementById('todo-list');
-    listContainer.textContent = '';
-    
-
-    for (let todoObj of todosArray) {
-        const messageP = document.createElement('p');
-        const todoMessage = todoObj.todo;
-        messageP.textContent = todoMessage;
-        listContainer.append(messageP);
-        const completeButton = document.createElement('button');
-        completeButton.textContent = 'Completed';
-        listContainer.append(completeButton);
-    }
-
-
     todoId++;
 });
+
+renderList();
