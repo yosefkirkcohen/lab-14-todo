@@ -35,3 +35,20 @@ export function addToDo(message) {
     );
     setToDos(todosArray);
 }
+
+export function getUserArray() {
+    const stringyUserArray = localStorage.getItem('USERS');
+
+    const userArray = JSON.parse(stringyUserArray);
+
+    if (!userArray) {
+        const userArray = [];
+        return userArray;
+    }
+    return userArray;
+}
+
+export function setUserArray(userArray) {
+    const stringyUserArray = JSON.stringify(userArray);
+    localStorage.setItem('USERS', stringyUserArray);
+}

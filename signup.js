@@ -1,5 +1,6 @@
 import { setUser } from './local-storage-utils.js';
-import { USER } from './local-storage-utils.js';
+import { getUserArray } from './local-storage-utils.js';
+import { setUserArray } from './local-storage-utils.js';
 
 const userForm = document.querySelector('form');
 
@@ -11,7 +12,13 @@ userForm.addEventListener('submit', (e) => {
         password: formData.get('password'),
         todos: []
     };
+    // get the userArray, which will create one if it doesn't
+    //already exist
+    const userArray = getUserArray();
 
-    setUser(user);
+    userArray.push(user);
+
+    setUserArray(userArray);
+
     window.location = './to-do';
 });
