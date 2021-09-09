@@ -112,7 +112,11 @@ footer {
 
   }
   /* TO DO page */
-  /* .todo-list > button {
-      display: flex;
-      flex-direction: row;
-  } */
+  .todo-list button {
+      margin: 10px;
+  }
+
+  body {
+      margin-left: 20px;
+      
+  }
