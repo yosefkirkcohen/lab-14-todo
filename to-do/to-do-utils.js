@@ -26,10 +26,6 @@ export function renderList() {
 
             setToDos(todosArray);
 
-            console.log(todoObj.completed);
-
-            console.log('hello world');
-
             renderList();
         });
 

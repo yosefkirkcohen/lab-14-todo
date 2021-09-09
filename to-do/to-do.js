@@ -4,7 +4,7 @@ import { setToDos } from '../local-storage-utils.js';
 import { addToDo } from '../local-storage-utils.js';
 import { renderList } from './to-do-utils.js';
 
-let todoId = 1;
+renderList();
 
 const todoForm = document.querySelector('form');
 
@@ -14,13 +14,9 @@ todoForm.addEventListener('submit', (e) => {
     
     
     const toDoMessage = formData.get('to-do');
-    const todosArray = getToDos();
+    
 
-    addToDo(todosArray, toDoMessage, todoId);
-
-    setToDos(todosArray);
-
-    todoId++;
+    addToDo(toDoMessage);
+    renderList();
 });
 
-renderList();
