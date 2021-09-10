@@ -2,6 +2,7 @@ import { setUser } from './local-storage-utils.js';
 import { getUserArray } from './local-storage-utils.js';
 import { setUserArray } from './local-storage-utils.js';
 import { getUser } from './local-storage-utils.js';
+import { findByUsername } from './local-storage-utils.js';
 
 const userForm = document.querySelector('form');
 
@@ -20,6 +21,14 @@ userForm.addEventListener('submit', (e) => {
     //already exist
     const userArray = getUserArray();
 
+    //Don't allow duplicate usernames
+    const match = findByUsername(userArray, currentUsername);
+    if (match) {
+        alert('Username already chosen.');
+        return;
+    }
+
+
     userArray.push(user);
 
     setUserArray(userArray);
@@ -28,4 +37,3 @@ userForm.addEventListener('submit', (e) => {
 });
 
 const testname = getUser('yosi');
-console.log(testname);
