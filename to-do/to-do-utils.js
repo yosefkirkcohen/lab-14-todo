@@ -16,12 +16,16 @@ export function renderList(username) {
         const todoMessage = todoObj.todo;
         messageP.textContent = todoMessage;
     
-        if (todoObj.completed === true) {
-            messageP.style.textDecoration = 'line-through';
-        }
+        
 
         itemContainer.append(messageP);
         const completeButton = document.createElement('button');
+
+        if (todoObj.completed === true) {
+            messageP.style.textDecoration = 'line-through';
+            completeButton.disabled = 'true';
+        }
+       
         completeButton.textContent = 'Completed';
 
         completeButton.addEventListener('click', () => {
