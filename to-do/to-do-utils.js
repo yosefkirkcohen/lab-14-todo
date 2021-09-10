@@ -9,7 +9,10 @@ export function renderList() {
 //button updates local storage only
     const todosArray = getToDos();
     for (let todoObj of todosArray) {
-        const messageP = document.createElement('p');
+
+        const itemContainer = document.createElement('div');
+
+        const messageP = document.createElement('span');
         const todoMessage = todoObj.todo;
         messageP.textContent = todoMessage;
     
@@ -17,7 +20,7 @@ export function renderList() {
             messageP.style.textDecoration = 'line-through';
         }
 
-        listContainer.append(messageP);
+        itemContainer.append(messageP);
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Completed';
 
@@ -26,13 +29,10 @@ export function renderList() {
 
             setToDos(todosArray);
 
-            console.log(todoObj.completed);
-
-            console.log('hello world');
-
             renderList();
         });
 
-        listContainer.append(completeButton);
+        itemContainer.append(completeButton);
+        listContainer.append(itemContainer);
     }
 }

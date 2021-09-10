@@ -22,12 +22,16 @@ export function setToDos(todoArray) {
     setUser(user);
 }
 
-export function addToDo(todosArray, message, todoId) {
+export function addToDo(message) {
+
+    const todosArray = getToDos();
+
     todosArray.push(
         {
-            id: todoId,
+            id: (todosArray.length),
             todo: message, 
             completed: false,
         }
     );
+    setToDos(todosArray);
 }
