@@ -5,26 +5,33 @@ export function setUser(someUser) {
     localStorage.setItem(USER, stringyUser);
 }
 
-export function getUser() {
-    const stringyUser = localStorage.getItem(USER);
-    const user = JSON.parse(stringyUser);
+//changing so it will get user from userArray and take username
+export function getUser(username) {
+    const userArray = getUserArray();
+    const user = findByUsername(userArray, username);
     return user;
 }
 
-export function getToDos() {
-    const user = getUser();
+//
+export function getToDos(username) {
+    const user = getUser(username);
     return user.todos;
 }
-
-export function setToDos(todoArray) {
-    const user = getUser();
+//THIS IS THE CURRENT PROBLEM SPOT!!
+export function setToDos(todoArray, username) {
+    const userArray = getUserArray();
+    // const user = getUser(username);
+    const user = findByUsername(userArray, username);
     user.todos = todoArray;
-    setUser(user);
+
+    console.log(userArray);
+    
+    setUserArray(userArray);
 }
 
-export function addToDo(message) {
+export function addToDo(message, username) {
 
-    const todosArray = getToDos();
+    const todosArray = getToDos(username);
 
     todosArray.push(
         {
@@ -33,7 +40,7 @@ export function addToDo(message) {
             completed: false,
         }
     );
-    setToDos(todosArray);
+    setToDos(todosArray, username);
 }
 
 export function getUserArray() {
@@ -51,4 +58,8 @@ export function getUserArray() {
 export function setUserArray(userArray) {
     const stringyUserArray = JSON.stringify(userArray);
     localStorage.setItem('USERS', stringyUserArray);
+}
+
+export function findByUsername(array, username) {
+    return array.find(item => item.username === username);
 }

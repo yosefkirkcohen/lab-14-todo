@@ -1,13 +1,13 @@
-import { getToDos, setToDos } from '../local-storage-utils.js';
+import { getToDos, setToDos, getUser } from '../local-storage-utils.js';
 
-export function renderList() {
+export function renderList(username) {
 //Render todo list here
     const listContainer = document.getElementById('todo-list');
     listContainer.textContent = '';
 
 //use an 'if completed is true' statement
 //button updates local storage only
-    const todosArray = getToDos();
+    const todosArray = getToDos(username);
     for (let todoObj of todosArray) {
 
         const itemContainer = document.createElement('div');
@@ -29,7 +29,7 @@ export function renderList() {
 
             setToDos(todosArray);
 
-            renderList();
+            renderList(username);
         });
 
         itemContainer.append(completeButton);

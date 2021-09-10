@@ -4,23 +4,28 @@ import { setToDos } from '../local-storage-utils.js';
 import { addToDo } from '../local-storage-utils.js';
 import { renderList } from './to-do-utils.js';
 
-renderList();
+//do search param thing here
+const paramData = new URLSearchParams(window.location.search);
+const currentUsername = paramData.get('username');
+
+
+renderList(currentUsername);
 
 const todoForm = document.querySelector('form');
 
 todoForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const formData = new FormData(todoForm);
-    
-    
     const toDoMessage = formData.get('to-do');
     
-
-    addToDo(toDoMessage);
+//THIS IS THE CURRENT PROBLEM!!!
+    addToDo(toDoMessage, currentUsername);
 
     const todoInput = document.getElementById('to-do');
     todoInput.value = '';
 
-    renderList();
+    renderList(currentUsername);
 });
 
+setToDos([1, 2, 3, 4, 5], 'yosiman');
