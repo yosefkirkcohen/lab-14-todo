@@ -8,9 +8,9 @@ userForm.addEventListener('submit', (e) => {
     const userName = formData.get('username');
     const passWord = formData.get('password');
 
-    const user = getUser();
+    const user = getUser(userName);
 
-    if (user.username === userName && user.password === passWord) {
+    if (user.password === passWord) {
         window.location = '../to-do/';
     } else {
         alert('Incorrect username or password');
