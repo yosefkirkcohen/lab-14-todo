@@ -1,5 +1,8 @@
 import { setUser } from './local-storage-utils.js';
-import { USER } from './local-storage-utils.js';
+import { getUserArray } from './local-storage-utils.js';
+import { setUserArray } from './local-storage-utils.js';
+import { getUser } from './local-storage-utils.js';
+import { findByUsername } from './local-storage-utils.js';
 
 const userForm = document.querySelector('form');
 
@@ -11,7 +14,26 @@ userForm.addEventListener('submit', (e) => {
         password: formData.get('password'),
         todos: []
     };
+    //get current username for the query parameter
+    const currentUsername = formData.get('username');
 
-    setUser(user);
-    window.location = './to-do';
+    // get the userArray, which will create one if it doesn't
+    //already exist
+    const userArray = getUserArray();
+
+    //Don't allow duplicate usernames
+    const match = findByUsername(userArray, currentUsername);
+    if (match) {
+        alert('Username already chosen.');
+        return;
+    }
+
+
+    userArray.push(user);
+
+    setUserArray(userArray);
+
+    window.location = `./to-do/?username=${currentUsername}`;
 });
+
+const testname = getUser('yosi');
