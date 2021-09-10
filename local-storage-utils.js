@@ -20,11 +20,9 @@ export function getToDos(username) {
 //THIS IS THE CURRENT PROBLEM SPOT!!
 export function setToDos(todoArray, username) {
     const userArray = getUserArray();
-    // const user = getUser(username);
+    
     const user = findByUsername(userArray, username);
     user.todos = todoArray;
-
-    console.log(userArray);
     
     setUserArray(userArray);
 }

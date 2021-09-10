@@ -27,7 +27,7 @@ export function renderList(username) {
         completeButton.addEventListener('click', () => {
             todoObj.completed = true;
 
-            setToDos(todosArray);
+            setToDos(todosArray, username);
 
             renderList(username);
         });
